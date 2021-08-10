@@ -4,7 +4,7 @@ export const getPosts = async (req,res) => {
 
     try {
 
-        posts = await Posts.find();
+        const posts = await Posts.find();
 
         res.status(200).json(posts)
 
@@ -15,7 +15,7 @@ export const getPosts = async (req,res) => {
     }
 }
 
-export const createPosts = (req,res) => {
+export const createPosts = async (req,res) => {
 
     const post = req.body;
 
