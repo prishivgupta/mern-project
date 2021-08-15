@@ -1,63 +1,33 @@
-import React, { useEffect, useState } from "react";
-import {useDispatch} from "react-redux";
-import {Container, AppBar, Typography, Grow, Grid} from "@material-ui/core";
-import Form from "./components/Form/Form";
-import Posts from "./components/Posts/Posts";
-import memories from "./images/memories.png";  
-import useStyles from "./styles";
-import { listPosts } from "./actions/postActions";
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import {Container} from "@material-ui/core";
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./components/Home/Home";
+import Auth from "./components/Auth/Auth";
 
 function App() {
 
-  const classes = useStyles();
-
-  const dispatch = useDispatch();
-
-  const [currentId, setCurrentId] = useState(0);
-
-  useEffect(() => {
-
-    dispatch(listPosts());
-    
-  }, [currentId, dispatch])
-
   return (
+
+    <BrowserRouter>
     
-    <Container maxWidth="lg">
+      <Container maxWidth="lg">
 
-      <AppBar className={classes.appBar} position="static" color="inherit">
+        <Navbar />
 
-        <Typography className={classes.heading} variant="h2" align="center">MEMORIES</Typography>
+        <Switch>
 
-        <img className={classes.image} src={memories} alt="memories" height="60" />
+          <Route path="/" exact component={Home} />
 
-      </AppBar>
+          <Route path="/auth" exact component={Auth} />
 
-      <Grow in>
+        </Switch>
 
-        <Container>
-
-          <Grid container justifyContent="space-between" alignItems="stretch" spacing={3}>
-
-            <Grid item xs={12} sm={7}>
-
-              <Posts setCurrentId={setCurrentId}/>
-              
-            </Grid>
-
-            <Grid item xs={12} sm={4}>
-
-              <Form currentId={currentId} setCurrentId={setCurrentId}/>
-              
-            </Grid>
-
-          </Grid>
-
-        </Container>
-
-      </Grow>
-
-    </Container>
+      </Container>
+    
+    </BrowserRouter>
+    
+    
 
   );
 
