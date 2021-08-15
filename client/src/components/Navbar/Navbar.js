@@ -16,7 +16,7 @@ import memories from "../../images/memories.png";
 
             <div className={classes.brandContainer}>
 
-                <Typography componrnt={Link} to="/" className={classes.heading} variant="h2" align="center">MEMORIES</Typography>
+                <Typography component={Link} to="/" className={classes.heading} variant="h2" align="center">MEMORIES</Typography>
 
                 <img className={classes.image} src={memories} alt="memories" height="60" />
                 
