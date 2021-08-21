@@ -8,22 +8,35 @@ import Input from './input';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+const initialState = {firstName: '', lastName: '', email: '', password: '', confirmPassword: ''};
+
 const Auth = () => {
 
     const classes = useStyles();
 
     const [showPassword, setShowPassword] = useState(false);
     const [isSignup, setIsSignup] = useState(false)
+    const [formData, setFormData] = useState(initialState)
 
     const dispatch = useDispatch();
 
     const history = useHistory();
 
-    const submitHandler = () => {
+    const submitHandler = (e) => {
+
+        e.preventDefault();
+
+        if (isSignup) {
+
+        } else {
+            
+        }
 
     }
 
-    const changeHandler = () => {
+    const changeHandler = (e) => {
+
+        setFormData({...formData, [e.target.name]: e.target.value});
 
     }
 
@@ -83,16 +96,16 @@ const Auth = () => {
                             isSignup && (
 
                                 <>
-                                    <Input name="firstName" label="First Name" changeHandler={changeHandler} autoFocus half></Input>
-                                    <Input name="lastName" label="Last Name" changeHandler={changeHandler} autoFocus half></Input> 
+                                    <Input name="firstName" label="First Name" handleChange={changeHandler} autoFocus half></Input>
+                                    <Input name="lastName" label="Last Name" handleChange={changeHandler} autoFocus half></Input> 
                                 </>
 
                             )
                         }
 
-                        <Input name="email" label="Email Address" changeHandler={changeHandler} type="email" />
-                        <Input name="password" label="Password" changeHandler={changeHandler} type={showPassword ? 'text' : 'password'} showPasswordHandler={showPasswordHandler} />
-                        { isSignup && <Input name="confirmPassword" label="Confirm Password" changeHandler={changeHandler} type="password" /> }
+                        <Input name="email" label="Email Address" handleChange={changeHandler} type="email" />
+                        <Input name="password" label="Password" handleChange={changeHandler} type={showPassword ? 'text' : 'password'} showPasswordHandler={showPasswordHandler} />
+                        { isSignup && <Input name="confirmPassword" label="Confirm Password" handleChange={changeHandler} type="password" /> }
 
                     </Grid>
 
