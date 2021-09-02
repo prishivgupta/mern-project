@@ -1,6 +1,6 @@
 import { AUTH, LOGOUT } from "../constants/authConstants";
 
-const authReducer = (state={suthData: null}, action) => {
+const authReducer = (state={authData: null}, action) => {
 
     switch(action.type) {
 

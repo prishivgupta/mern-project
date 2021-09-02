@@ -7,6 +7,7 @@ import useStyles from "./styles";
 import Input from './input';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { signin, signup } from '../../actions/authActions';
 
 const initialState = {firstName: '', lastName: '', email: '', password: '', confirmPassword: ''};
 
@@ -28,7 +29,11 @@ const Auth = () => {
 
         if (isSignup) {
 
+            dispatch(signup(formData, history));
+
         } else {
+
+            dispatch(signin(formData, history));
             
         }
 
@@ -42,14 +47,14 @@ const Auth = () => {
 
     const showPasswordHandler = () => {
 
-        setShowPassword((prev) => !prev)
+        setShowPassword((prev) => !prev);
 
     }
 
     const switchMode = () => {
 
         setIsSignup((prev) => !prev)
-        showPasswordHandler(false)
+        setShowPassword(false);
 
     }
 
@@ -104,7 +109,7 @@ const Auth = () => {
                         }
 
                         <Input name="email" label="Email Address" handleChange={changeHandler} type="email" />
-                        <Input name="password" label="Password" handleChange={changeHandler} type={showPassword ? 'text' : 'password'} showPasswordHandler={showPasswordHandler} />
+                        <Input name="password" label="Password" handleChange={changeHandler} type={showPassword ? 'text' : 'password'} handle={showPasswordHandler} />
                         { isSignup && <Input name="confirmPassword" label="Confirm Password" handleChange={changeHandler} type="password" /> }
 
                     </Grid>
